@@ -1,5 +1,15 @@
 # Mongo Sync
 
+Mongo Sync is a synchronous MongoDB driver for use with Common Node (and node-fibers) that attempts to closely approximate the [MongoDB shell](http://www.mongodb.org/display/DOCS/dbshell+Reference).
+
+It is a thin wrapper around [Mongolian DeadBeef](https://raw.github.com/marcello3d/node-mongolian/). Here is a quick usage example:
+
+    var Server = require("mongo-sync").Server;
+    var server = new Server('127.0.0.1');
+    var result = server.db("test").getCollection("posts").find().toArray();
+    console.log(result);
+    server.close();
+
 ### License 
 
 (The MIT License)
