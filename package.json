@@ -1,0 +1,19 @@
+{
+  "name": "mongo-sync",
+  "keywords": ["mongodb"],
+  "description": "Synchronous MongoDB driver",
+  "version": "0.1.0",
+  "author": "Oleg Podsechin <oleg@ionsquare.com>",
+  "directories" : {
+    "lib" : "./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/olegp/mongo-sync.git"
+  },
+  "homepage": "https://github.com/olegp/mongo-sync/",
+  "main": "./lib/mcms.js",
+  "engines": { "node": ">= 0.4.0" },
+  "dependencies" : { "mongolian": ">= 0.1.13", "fibers": ">= 0.6.1" },
+  "licenses": [ { "type": "MIT" } ]
+}
