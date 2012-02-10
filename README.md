@@ -12,7 +12,7 @@ It is a thin wrapper around [Mongolian DeadBeef](https://github.com/marcello3d/n
     
 For a complete application using this driver, check out [Notes](https://github.com/olegp/notes/). 
 
-If you want to using Mongo Sync directly with [node-fibers](https://github.com/laverdet/node-fibers) (i.e. without Common Node), make sure all database requests occur within a fiber.
+If you want to use Mongo Sync directly with [node-fibers](https://github.com/laverdet/node-fibers) (i.e. without Common Node), make sure all database requests occur within a fiber.
 
 ### License 
 
