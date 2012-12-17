@@ -2,7 +2,7 @@
   "name": "mongo-sync",
   "keywords": ["mongodb"],
   "description": "Synchronous MongoDB driver",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Oleg Podsechin <oleg@ionsquare.com>",
   "directories" : {
     "lib" : "./lib"
