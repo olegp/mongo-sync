@@ -18,7 +18,7 @@ If you want to use Mongo Sync directly with [node-fibers](https://github.com/lav
     Fiber(function() {
       // set up goes here ...
       var result = server.db("LashDB").getCollection("users").find().toArray();
-    });
+    }).run();
     
 ### License 
 
