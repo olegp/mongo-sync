@@ -19,6 +19,10 @@ If you want to use Mongo Sync directly with [node-fibers](https://github.com/lav
       // set up goes here ...
       var result = server.db("LashDB").getCollection("users").find().toArray();
     }).run();
+
+### Community
+
+If you have any questions about using `mongo-sync` by itself or in conjunction with Common Node, please post them to the [Common Node mailing list](https://groups.google.com/forum/#!forum/common-node).
     
 ### License 
 
