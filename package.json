@@ -4,7 +4,7 @@
     "mongodb"
   ],
   "description":"Synchronous MongoDB driver",
-  "version":"0.1.5",
+  "version":"0.2.0",
   "author":{
     "name":"Oleg Podsechin",
     "email":"oleg@ionsquare.com"
@@ -29,10 +29,12 @@
   "homepage":"https://github.com/olegp/mongo-sync/",
   "main":"./lib/mongo-sync.js",
   "engines":{
-    "node":">= 0.4.0"
+    "node":">= 0.10.0"
   },
   "dependencies":{
-    "mongolian":">= 0.1.13",
+    "mongodb":">= 1.3.19"
+  },
+  "devDependencies":{
     "fibers":">= 0.6.1"
   },
   "licenses":[

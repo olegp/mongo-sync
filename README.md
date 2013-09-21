@@ -2,7 +2,7 @@
 
 Mongo Sync is a synchronous MongoDB driver for use with [Common Node](http://olegp.github.com/common-node/) that attempts to closely approximate the [MongoDB shell](http://www.mongodb.org/display/DOCS/dbshell+Reference).
 
-It is a thin wrapper around [Mongolian DeadBeef](https://github.com/marcello3d/node-mongolian/). Here is a quick usage example that you can use with Common Node:
+It is a thin wrapper around the official MongoDB driver for Node. Here is a quick usage example that you can use with Common Node:
 
     var Server = require("mongo-sync").Server;
     var server = new Server('127.0.0.1');
