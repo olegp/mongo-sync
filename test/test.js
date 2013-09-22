@@ -3,7 +3,7 @@ var test = require('test');
 var Server = require("../lib/mongo-sync").Server;
 
 var db = new Server('127.0.0.1').db("test");
-//db.dropDatabase();
+db.dropDatabase();
 var collection = db.getCollection("tests");
 
 exports.testGetCollection = function() {
@@ -34,15 +34,15 @@ exports.testEval = function() {
 //exports.testRemoveUser = function() {
 //}
 
-/*
-exports.testRunCommand = function() {
-  assert.strictEqual(
-    db.runCommand({
-      eval: function(x) { return x; },
-      args: [42]
-    }).retval, 42);
-}
-*/
+//exports.testRunCommand = function() {
+//  assert.strictEqual(
+//    db.runCommand({
+//    eval:function(x) {
+//      return x;
+//    },
+//    args:[42]
+//  }).retval, 42);
+//};
 
 exports.testGetLastErrorObj = function() {
   assert.equal(db.getLastErrorObj().err, null);
@@ -88,7 +88,7 @@ exports.testUpdate = function() {
   collection.remove();
   collection.insert({test:"test"});
   assert.equal(collection.count(), 1);
-  collection.update({}, {$set: {test: "test2"}});
+  collection.update({}, {$set:{test:"test2"}});
   //NOTE: we don't test all update operators here http://docs.mongodb.org/manual/reference/operator/nav-update/#id1
   assert.equal(collection.count(), 1);
   assert.equal(collection.find({}).next().test, "test2");
@@ -96,34 +96,37 @@ exports.testUpdate = function() {
 
 exports.testEnsureIndex = function() {
   var indexed = db.getCollection("indexed");
-  indexed.ensureIndex({name: 1});
+  indexed.ensureIndex({name:1});
   assert.equal(indexed.getIndexes()[1].key.name, 1);
 };
 
 exports.testFind = function() {
   collection.remove();
-  collection.insert({expression:"2 + 2", result: 4});
-  collection.insert({expression:"1 + 1", result: 2});
+  collection.insert({expression:"2 + 2", result:4});
+  collection.insert({expression:"1 + 1", result:2});
 
-  assert.equal(collection.find({result: 2}).next().expression, "1 + 1");
-  assert.equal(collection.find({result: 2}, {expression: 1}).next().expression, "1 + 1");
-  assert.equal(collection.find({result: 2}, {result: 1}).next().expression, undefined);
+  assert.equal(collection.find({result:2}).next().expression, "1 + 1");
+  assert.equal(collection.find({result:2}, {expression:1}).next().expression, "1 + 1");
+  assert.equal(collection.find({result:2}, {result:1}).next().expression, undefined);
 };
 
 exports.testFindOne = function() {
   collection.remove();
-  collection.insert({expression:"2 + 2", result: 4});
-  collection.insert({expression:"1 + 1", result: 2});
+  collection.insert({expression:"2 + 2", result:4});
+  collection.insert({expression:"1 + 1", result:2});
 
-  assert.equal(collection.findOne({result: 2}).expression, "1 + 1");
-  assert.equal(collection.findOne({result: 2}, {expression: 1}).expression, "1 + 1");
-  assert.equal(collection.findOne({result: 2}, {result: 1}).expression, undefined);
+  assert.equal(collection.findOne({result:2}).expression, "1 + 1");
+  assert.equal(collection.findOne({result:2}, {expression:1}).expression, "1 + 1");
+  assert.equal(collection.findOne({result:2}, {result:1}).expression, undefined);
 };
 
 exports.testFindAndModify = function() {
   collection.remove();
   collection.insert({test:"test"});
-  collection.findAndModify({query: {test:"test"}, update: {$set: {test: "test2"}}});
+  assert.equal(collection.findAndModify({
+    query:{test:"test"},
+    update:{$set:{test:"test2"}}
+  }).test, "test");
   assert.equal(collection.find({}).next().test, "test2");
   //TODO test that options work as well
 };
@@ -140,18 +143,18 @@ exports.testRemove = function() {
   collection.remove();
   collection.insert({name:"John"});
   collection.insert({name:"John"});
+  collection.insert({name:"John"});
   collection.insert({name:"Smith"});
 
-  assert.equal(collection.count(), 3);
+  assert.equal(collection.count(), 4);
 
   collection.remove({name:"Smith"});
+  assert.equal(collection.count(), 3);
+
+  collection.remove({name:"John"}, true);
   assert.equal(collection.count(), 2);
 
-  //TODO justOne
-  //collection.remove({name: "John"}, true);
-  //assert.equal(collection.count(), 1);
-
-  collection.remove({name: "John"});
+  collection.remove({name:"John"});
   assert.equal(collection.count(), 0);
 };
 
