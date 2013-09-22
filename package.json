@@ -4,7 +4,7 @@
     "mongodb"
   ],
   "description":"Synchronous MongoDB driver",
-  "version":"0.2.0",
+  "version":"0.2.1",
   "author":{
     "name":"Oleg Podsechin",
     "email":"oleg@ionsquare.com"
