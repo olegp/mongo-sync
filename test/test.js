@@ -230,18 +230,16 @@ exports.testCount = function() {
   collection.insert({});
   collection.insert({});
   assert.equal(collection.find({}).count(), 2);
+  assert.equal(collection.find({}).skip(1).count(), 2);
 };
 
-/*
 exports.testSize = function() {
   collection.remove();
   collection.insert({});
   collection.insert({});
-  assert.equal(collection.find({}).count(), 2);
-  assert.equal(collection.find({}).skip(1).count(), 2);
-  assert.equal(collection.find({}).skip(1).size(), 1);
-}
-*/
+  assert.equal(collection.find({}).size(), 2);
+  assert.equal(collection.find({}).limit(1).size(), 1);
+};
 
 /*
 exports.testExplain = function() {
@@ -249,18 +247,18 @@ exports.testExplain = function() {
 }
 */
 
-/*
 exports.testMap = function() {
   collection.remove();
   collection.insert({name:"John"});
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
-  var array = collection.find({}).map(function(user) { return user.name; }).toArray();
+  var array = collection.find({}).map(function(user) {
+    return user.name;
+  }).toArray();
   assert.equal(array[0], "John");
   assert.equal(array[1], "Smith");
   assert.equal(array[2], "Adam");
-}
-*/
+};
 
 exports.testNext = function() {
   collection.remove();
