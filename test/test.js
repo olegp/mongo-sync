@@ -3,7 +3,6 @@ var test = require('test');
 var Server = require("../lib/mongo-sync").Server;
 
 var db = new Server('127.0.0.1').db("test");
-db.dropDatabase();
 var collection = db.getCollection("tests");
 
 exports.testGetCollection = function() {
@@ -15,11 +14,22 @@ exports.testCollectionNames = function() {
   assert.notEqual(db.collectionNames().indexOf("tests"), -1);
 };
 
-//exports.testAddUser = function() {
-//}
+exports.testAddUser = function() {
+  db.addUser('tester', 'testee');
+};
 
-//exports.testAuth = function() {
-//}
+exports.testRemoveUser = function() {
+  db.removeUser('tester');
+};
+
+exports.testAuth = function() {
+  db.addUser('tester', 'testee');
+  assert.ok(db.auth('tester', 'testee'));
+  db.removeUser('tester');
+  assert.throws(function() {
+    db.auth('tester', 'testee');
+  });
+};
 
 exports.testDropDatabase = function() {
   collection.insert({});
