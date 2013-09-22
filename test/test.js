@@ -241,11 +241,9 @@ exports.testSize = function() {
   assert.equal(collection.find({}).limit(1).size(), 1);
 };
 
-/*
 exports.testExplain = function() {
   assert.equal(collection.find({}).explain().cursor, 'BasicCursor');
-}
-*/
+};
 
 exports.testMap = function() {
   collection.remove();
