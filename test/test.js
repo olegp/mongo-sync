@@ -252,8 +252,8 @@ exports.testSize = function() {
   collection.remove();
   collection.insert({});
   collection.insert({});
-  assert.equal(collection.find({}).size(), 0);
-  assert.equal(collection.find({}).skip(1).size(), 0);
+  assert.equal(collection.find({}).size(), 2);
+  assert.equal(collection.find({}).skip(1).size(), 2);
   assert.equal(collection.find({}).limit(1).size(), 1);
   assert.equal(collection.find({}).skip(1).limit(1).size(), 1);
 };
