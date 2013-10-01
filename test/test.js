@@ -81,7 +81,7 @@ exports.testDrop = function() {
 exports.testInsert = function() {
   collection.remove();
   collection.insert({test:"test"});
-  assert.equal(collection.find({}).next().test, "test");
+  assert.equal(collection.find().next().test, "test");
 };
 
 exports.testSave = function() {
@@ -91,7 +91,7 @@ exports.testSave = function() {
   test.test = "test2";
   collection.save(test);
   assert.equal(collection.count(), 1);
-  assert.equal(collection.find({}).next().test, "test2");
+  assert.equal(collection.find().next().test, "test2");
 };
 
 exports.testUpdate = function() {
@@ -101,7 +101,7 @@ exports.testUpdate = function() {
   collection.update({}, {$set:{test:"test2"}});
   //NOTE: we don't test all update operators here http://docs.mongodb.org/manual/reference/operator/nav-update/#id1
   assert.equal(collection.count(), 1);
-  assert.equal(collection.find({}).next().test, "test2");
+  assert.equal(collection.find().next().test, "test2");
 };
 
 exports.testEnsureIndex = function() {
@@ -137,7 +137,7 @@ exports.testFindAndModify = function() {
     query:{test:"test"},
     update:{$set:{test:"test2"}}
   }).test, "test");
-  assert.equal(collection.find({}).next().test, "test2");
+  assert.equal(collection.find().next().test, "test2");
   //TODO test that options work as well
 };
 
@@ -174,11 +174,13 @@ exports.testToArray = function() {
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
 
-  var array = collection.find({}).toArray();
+  var cursor = collection.find();
+  var array = cursor.toArray();
   assert.equal(array.length, 3);
   assert.equal(array[0].name, "John");
   assert.equal(array[1].name, "Smith");
   assert.equal(array[2].name, "Adam");
+  assert.equal(cursor._cursor.isClosed(), true);
 };
 
 exports.testForEach = function() {
@@ -188,13 +190,15 @@ exports.testForEach = function() {
   collection.insert({name:"Adam"});
 
   var array = [];
-  collection.find({}).forEach(function(item) {
+  var cursor = collection.find();
+  assert.equal(cursor.forEach(function(item) {
     array.push(item);
-  });
+  }), cursor);
   assert.equal(array.length, 3);
   assert.equal(array[0].name, "John");
   assert.equal(array[1].name, "Smith");
   assert.equal(array[2].name, "Adam");
+  assert.equal(cursor._cursor.isClosed(), true);
 };
 
 exports.testSort = function() {
@@ -203,12 +207,12 @@ exports.testSort = function() {
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
 
-  var array = collection.find({}).sort({name:1}).toArray();
+  var array = collection.find().sort({name:1}).toArray();
   assert.equal(array[0].name, "Adam");
   assert.equal(array[1].name, "John");
   assert.equal(array[2].name, "Smith");
 
-  array = collection.find({}).sort({name:-1}).toArray();
+  array = collection.find().sort({name:-1}).toArray();
   assert.equal(array[0].name, "Smith");
   assert.equal(array[1].name, "John");
   assert.equal(array[2].name, "Adam");
@@ -220,7 +224,7 @@ exports.testLimit = function() {
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
 
-  var array = collection.find({}).limit(2).toArray();
+  var array = collection.find().limit(2).toArray();
   assert.equal(array.length, 2);
   assert.equal(array[0].name, "John");
   assert.equal(array[1].name, "Smith");
@@ -232,7 +236,7 @@ exports.testSkip = function() {
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
 
-  var array = collection.find({}).skip(1).toArray();
+  var array = collection.find().skip(1).toArray();
   assert.equal(array.length, 2);
   assert.equal(array[0].name, "Smith");
   assert.equal(array[1].name, "Adam");
@@ -240,26 +244,29 @@ exports.testSkip = function() {
 
 exports.testCount = function() {
   collection.remove();
-  collection.insert({});
-  collection.insert({});
-  assert.equal(collection.find({}).count(), 2);
-  assert.equal(collection.find({}).skip(1).count(), 2);
-  assert.equal(collection.find({}).limit(1).count(), 2);
-  assert.equal(collection.find({}).skip(1).limit(1).count(), 2);
+  collection.insert({name:"John"});
+  collection.insert({name:"John"});
+  collection.insert({name:"Smith"});
+  assert.equal(collection.count(), 3);
+  assert.equal(collection.count({name:"John"}), 2);
+  assert.equal(collection.find().count(), 3);
+  assert.equal(collection.find().skip(1).count(), 3);
+  assert.equal(collection.find().limit(1).count(), 3);
+  assert.equal(collection.find().skip(1).limit(1).count(), 3);
 };
 
 exports.testSize = function() {
   collection.remove();
   collection.insert({});
   collection.insert({});
-  assert.equal(collection.find({}).size(), 2);
-  assert.equal(collection.find({}).skip(1).size(), 1);
-  assert.equal(collection.find({}).limit(1).size(), 1);
-  assert.equal(collection.find({}).skip(1).limit(1).size(), 1);
+  assert.equal(collection.find().size(), 2);
+  assert.equal(collection.find().skip(1).size(), 1);
+  assert.equal(collection.find().limit(1).size(), 1);
+  assert.equal(collection.find().skip(1).limit(1).size(), 1);
 };
 
 exports.testExplain = function() {
-  assert.equal(collection.find({}).explain().cursor, 'BasicCursor');
+  assert.equal(collection.find().explain().cursor, 'BasicCursor');
 };
 
 exports.testMap = function() {
@@ -267,7 +274,7 @@ exports.testMap = function() {
   collection.insert({name:"John"});
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
-  var array = collection.find({}).map(function(user) {
+  var array = collection.find().map(function(user) {
     return user.name;
   }).toArray();
   assert.equal(array[0], "John");
@@ -281,7 +288,7 @@ exports.testNext = function() {
   collection.insert({name:"Smith"});
   collection.insert({name:"Adam"});
 
-  var cursor = collection.find({});
+  var cursor = collection.find();
   assert.equal(cursor.next().name, "John");
   assert.equal(cursor.next().name, "Smith");
   assert.equal(cursor.next().name, "Adam");
