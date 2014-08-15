@@ -1,46 +1,46 @@
 {
-  "name":"mongo-sync",
-  "keywords":[
+  "name": "mongo-sync",
+  "keywords": [
     "mongodb"
   ],
-  "description":"Synchronous MongoDB driver",
-  "version":"0.2.4",
-  "author":{
-    "name":"Oleg Podsechin",
-    "email":"oleg@ionsquare.com"
+  "description": "Synchronous MongoDB driver",
+  "version": "0.3.0",
+  "author": {
+    "name": "Oleg Podsechin",
+    "email": "oleg@ionsquare.com"
   },
-  "contributors":[
+  "contributors": [
     {
-      "name":"Alex Lam",
-      "email":"alex.lam@starthq.com"
+      "name": "Alex Lam",
+      "email": "alex.lam@starthq.com"
     },
     {
-      "name":"Oleg Podsechin",
-      "email":"oleg@ionsquare.com"
+      "name": "Oleg Podsechin",
+      "email": "oleg@ionsquare.com"
     }
   ],
-  "directories":{
-    "lib":"./lib"
+  "directories": {
+    "lib": "./lib"
   },
-  "repository":{
-    "type":"git",
-    "url":"git://github.com/olegp/mongo-sync.git"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/olegp/mongo-sync.git"
   },
-  "homepage":"https://github.com/olegp/mongo-sync/",
-  "main":"./lib/mongo-sync.js",
-  "engines":{
-    "node":">= 0.10.0"
+  "homepage": "https://github.com/olegp/mongo-sync/",
+  "main": "./lib/mongo-sync.js",
+  "engines": {
+    "node": ">= 0.10.0"
   },
-  "dependencies":{
-    "mongodb":">= 1.3.19"
+  "dependencies": {
+    "mongodb": ">= 1.3.19"
   },
-  "devDependencies":{
-    "common-node":">= 0.10.7",
-    "fibers":">= 1.0.0"
+  "devDependencies": {
+    "common-node": ">= 0.10.7",
+    "fibers": ">= 1.0.0"
   },
-  "licenses":[
+  "licenses": [
     {
-      "type":"MIT"
+      "type": "MIT"
     }
   ]
 }
