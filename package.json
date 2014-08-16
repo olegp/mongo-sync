@@ -29,7 +29,7 @@
   "homepage": "https://github.com/olegp/mongo-sync/",
   "main": "./lib/mongo-sync.js",
   "scripts": {
-    "test": "node test/all.js"
+    "test": "node test/test-node.js"
   },
   "engines": {
     "node": ">= 0.10.0"
