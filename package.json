@@ -28,6 +28,9 @@
   },
   "homepage": "https://github.com/olegp/mongo-sync/",
   "main": "./lib/mongo-sync.js",
+  "scripts": {
+    "test": "node test/all.js"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
