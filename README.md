@@ -22,6 +22,8 @@ If you want to use Mongo Sync directly with [node-fibers](https://github.com/lav
 
 ### Tests
 
+[![Build Status](https://travis-ci.org/olegp/mongo-sync.svg?branch=master)](https://travis-ci.org/olegp/mongo-sync)
+
 Run the unit tests with the following command:
 
     common-node test/test.js
