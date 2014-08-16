@@ -54,10 +54,6 @@ exports.testEval = function() {
 //  }).retval, 42);
 //};
 
-exports.testGetLastErrorObj = function() {
-  assert.strictEqual(db.getLastErrorObj().err, undefined);
-};
-
 exports.testCollectionCount = function() {
   collection.remove();
   collection.insert({});
@@ -151,7 +147,7 @@ exports.testFindAndModify = function() {
     query:{test:"test"},
     update:{$set:{test:"test2"}},
     upsert:true
-  }), {});
+  }), null);
   assert.strictEqual(collection.find().next().test, "test2");
 
   collection.remove();
@@ -327,3 +323,4 @@ exports.testNext = function() {
 if (require.main === module) {
   test.run(exports);
 }
+
