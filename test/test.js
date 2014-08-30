@@ -44,15 +44,13 @@ exports.testEval = function() {
 //exports.testRemoveUser = function() {
 //}
 
-//exports.testRunCommand = function() {
-//  assert.strictEqual(
-//    db.runCommand({
-//    eval:function(x) {
-//      return x;
-//    },
-//    args:[42]
-//  }).retval, 42);
-//};
+exports.testRunCommand = function() {
+  assert.strictEqual(
+    db.runCommand({
+    $eval:"function(x) { return x; }",
+    args:[42]
+  }).retval, 42);
+};
 
 exports.testCollectionCount = function() {
   collection.remove();
