@@ -1,50 +1,112 @@
 {
-  "name":"mongo-sync",
-  "keywords":[
-    "mongodb"
+  "_args": [
+    [
+      {
+        "raw": "mongo-sync",
+        "scope": null,
+        "escapedName": "mongo-sync",
+        "name": "mongo-sync",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/usr/Documents/Dev/Coffeescript/DBConnector"
+    ]
   ],
-  "description":"Synchronous MongoDB driver",
-  "version":"2.0.0",
-  "author":{
-    "name":"Oleg Podsechin",
-    "email":"oleg@ionsquare.com"
+  "_from": "mongo-sync@latest",
+  "_id": "mongo-sync@2.0.1",
+  "_inCache": true,
+  "_location": "/mongo-sync",
+  "_npmUser": {
+    "name": "olegp",
+    "email": "oleg.podsechin@ionsquare.com"
   },
-  "contributors":[
+  "_npmVersion": "1.4.21",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "mongo-sync",
+    "scope": null,
+    "escapedName": "mongo-sync",
+    "name": "mongo-sync",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mongo-sync/-/mongo-sync-2.0.1.tgz",
+  "_shasum": "cd87fed3f9aa45c5c10c9ba27fbae3a0734206a7",
+  "_shrinkwrap": null,
+  "_spec": "mongo-sync",
+  "_where": "/home/usr/Documents/Dev/Coffeescript/DBConnector",
+  "author": {
+    "name": "Oleg Podsechin",
+    "email": "oleg@ionsquare.com"
+  },
+  "bugs": {
+    "url": "https://github.com/olegp/mongo-sync/issues"
+  },
+  "contributors": [
     {
-      "name":"Alex Lam",
-      "email":"alex.lam@starthq.com"
+      "name": "Alex Lam",
+      "email": "alex.lam@starthq.com"
     },
     {
-      "name":"Oleg Podsechin",
-      "email":"oleg@ionsquare.com"
+      "name": "Oleg Podsechin",
+      "email": "oleg@ionsquare.com"
     }
   ],
-  "directories":{
-    "lib":"./lib"
+  "dependencies": {
+    "common-utils": ">=0.0.2",
+    "fibers": ">=2.0.2",
+    "mongodb": ">=3.0.10"
   },
-  "repository":{
-    "type":"git",
-    "url":"git://github.com/olegp/mongo-sync.git"
+  "description": "Synchronous MongoDB driver",
+  "devDependencies": {
+    "common-node": ">=0.10.7"
   },
-  "homepage":"https://github.com/olegp/mongo-sync/",
-  "main":"./lib/mongo-sync.js",
-  "scripts":{
-    "test":"node test/test-node.js"
+  "directories": {
+    "lib": "./lib"
   },
-  "engines":{
-    "node":">=0.10.0"
+  "dist": {
+    "shasum": "cd87fed3f9aa45c5c10c9ba27fbae3a0734206a7",
+    "tarball": "https://registry.npmjs.org/mongo-sync/-/mongo-sync-2.0.1.tgz"
   },
-  "dependencies":{
-    "common-utils":">=0.0.2",
-    "fibers":">=1.0.5",
-    "mongodb":">=2.0.24"
+  "engines": {
+    "node": ">=0.10.0"
   },
-  "devDependencies":{
-    "common-node":">=0.10.7"
-  },
-  "licenses":[
+  "gitHead": "bf18fa81be840d771f8c65c3aa0a9b19fe407c04",
+  "homepage": "https://github.com/olegp/mongo-sync/",
+  "keywords": [
+    "mongodb"
+  ],
+  "licenses": [
     {
-      "type":"MIT"
+      "type": "MIT"
     }
-  ]
+  ],
+  "main": "./lib/mongo-sync.js",
+  "maintainers": [
+    {
+      "name": "olegp",
+      "email": "oleg@ionsquare.com"
+    },
+    {
+      "name": "alexlamsl",
+      "email": "alex+npm@starthq.com"
+    }
+  ],
+  "name": "mongo-sync",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/olegp/mongo-sync.git"
+  },
+  "scripts": {
+    "test": "node test/test-node.js"
+  },
+  "version": "2.0.1"
 }
