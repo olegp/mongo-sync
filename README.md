@@ -4,21 +4,27 @@ Mongo Sync is a synchronous MongoDB driver for use with [Common Node](http://ole
 
 It is a thin wrapper around the official MongoDB driver for Node. Here is a quick usage example that you can use with Common Node:
 
+```javascript
     var Server = require("mongo-sync").Server;
+    var Client = require("mongo-sync").MongoClient;
     var server = new Server('127.0.0.1');
-    var result = server.db("test").getCollection("posts").find().toArray();
+    var client = new Client(server)
+    var result = client.db("test").getCollection("posts").find().toArray();
     console.log(result);
     server.close();
-    
+```
+
 For a complete application using this driver, check out [Notes](https://github.com/olegp/notes/). 
 
 If you want to use Mongo Sync directly with [node-fibers](https://github.com/laverdet/node-fibers) (i.e. without Common Node), make sure all database requests occur within a fiber, e.g.:
 
+```javascript
     var Fiber = require('fibers');
     Fiber(function() {
       // set up goes here ...
       var result = server.db("LashDB").getCollection("users").find().toArray();
     }).run();
+```
 
 ### Tests
 
@@ -26,7 +32,14 @@ If you want to use Mongo Sync directly with [node-fibers](https://github.com/lav
 
 Run the unit tests with the following command:
 
+```javascript
     common-node test/test.js
+```
+
+or using Fibers
+```javascript
+    node test/test-fiber.js
+```
 
 ### Community
 
